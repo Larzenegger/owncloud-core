@@ -40,6 +40,7 @@ class RootCollection extends SimpleCollection {
 			\OC::$server->getSystemTagManager(),
 			\OC::$server->getSystemTagObjectMapper()
 		);
+		$avatarCollection = new \OCA\DAV\Avatars\RootCollection($principalBackend, 'principals/users', \OC::$server->getAvatarManager());
 
 		$usersCardDavBackend = new CardDavBackend($db, $principalBackend, \OC::$server->getLogger());
 		$usersAddressBookRoot = new AddressBookRoot($principalBackend, $usersCardDavBackend, 'principals/users');
@@ -60,6 +61,7 @@ class RootCollection extends SimpleCollection {
 						$systemAddressBookRoot]),
 				$systemTagCollection,
 				$systemTagRelationsCollection,
+				$avatarCollection,
 		];
 
 		parent::__construct('root', $children);
